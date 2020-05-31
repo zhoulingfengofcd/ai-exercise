@@ -15,6 +15,13 @@ def conv3x3(in_planes, out_planes, stride=1, padding=1):
 class Bottleneck(nn.Module):
 
     def __init__(self, inplanes, planes, stride=1, downsample=None, norm_layer=None):
+        """
+        :param inplanes: 该块(Bottleneck)输入通道数
+        :param planes: 该块所在层的输入通道数
+        :param stride: 3*3卷积步长
+        :param downsample:
+        :param norm_layer:
+        """
         super(Bottleneck, self).__init__()
         if norm_layer is None:
             norm_layer = nn.BatchNorm2d
@@ -58,6 +65,9 @@ class Bottleneck(nn.Module):
 
 class ResNet101(nn.Module):
     def __init__(self, num_class):
+        """
+        :param num_class:输出类别数量
+        """
         super(ResNet101, self).__init__()
         self.inplanes = 64  # 记录每个layer的channel，初识
         # out = (n+2p-f)/s + 1
@@ -91,7 +101,7 @@ class ResNet101(nn.Module):
         """
         :param planes: 输入通道数
         :param blocks: blocks的数量
-        :param stride:
+        :param stride: 第一个块3*3卷积层的步长
         :return:
         """
         downsample = None
@@ -134,6 +144,7 @@ class ResNet101(nn.Module):
 
 
 if __name__ == '__main__':
+    # 打印核实网络是否与官方的一致
     # model = torchvision.models.resnet101()
     model = ResNet101(10)
     print(model)
