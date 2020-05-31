@@ -1,5 +1,7 @@
 from torch import nn
 
+# 参考链接：https://blog.csdn.net/weixin_43467711/article/details/105377584
+
 
 class Vgg16Net(nn.Module):
     def __init__(self):
